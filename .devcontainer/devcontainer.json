@@ -1,0 +1,20 @@
+
+{
+    "name": "JavaScript Development Environment",
+    "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:14",  // Ensure this image includes Node.js
+    "extensions": [
+      "ms-vscode.vscode-typescript-next",
+      "dbaeumer.vscode-eslint",
+      "rifi2k.format-html-in-php",
+      "sidthesloth.html5-boilerplate",
+      "ecmel.vscode-html-css",
+      "xabikos.JavaScriptSnippets",
+      "ritwickdey.LiveServer"
+    ],
+    "settings": {
+      "code-runner.executorMap": {
+        "javascript": "node"
+      }
+    },
+    "postCreateCommand": "npm install"  // Install Node.js packages if needed
+  }
