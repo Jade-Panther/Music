@@ -1,0 +1,114 @@
+
+.sb.close {
+    display:none;
+}
+
+.sb.open {
+    width: 500px;
+    height: 100%;
+    margin-top: 0px;
+    display:flex;
+    background-color: var(--mainColor);
+    color: white;
+}
+
+.sb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.sb h2 {
+    font-family: arial;
+    font-size:30px;
+    margin: 20px;
+}
+
+ul {
+    list-style-type: none;
+    width: 90%; 
+    padding: 0;
+    height: 80%;
+    overflow-y:auto;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%);
+}
+
+li {
+    padding: 20px;
+    box-shadow: 0px 0px 7px 3px rgba(255, 255, 255, 0.3);
+    font-size: 25px;
+    margin-top: 15px;
+    transition-duration: 0.4s;
+    width: 87%;
+    margin-left: 8px;
+    
+}
+li:hover {
+    scale: 1.01;
+}
+
+li button {
+    float:left;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    border-radius: 50%;
+    transition-property: transform, color;
+    transition-duration: 0.1, 0.5;
+}
+li button:hover {
+    background-color: var(--accent);
+    color: var(--mainColor);
+}
+
+li .author {
+    float: right;
+    transition-duration: 0.5s;
+}
+li .author:hover {
+    cursor:pointer;
+    color: var(--accent)
+}
+li .title {
+    margin-left: 15px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 10px;
+}
+input[type='text'] {
+    display: inline;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.all {
+    background-color: var(--accent);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    transition-duration: 0.1s;
+}
+.all:hover {
+    background-color: rgb(15, 177, 163);;
+}
+
+.all:active, li button:active, #update-btn:active{
+    scale: 0.95;
+}
+
+#update-btn {
+    background-color: transparent;
+    padding: 10px;
+    border: 3px solid var(--accent);
+    border-radius: 10px;
+    transition-duration: 0.1s;
+    margin: 10px;
+    width: 100px;
+    color: var(--accent);
+}

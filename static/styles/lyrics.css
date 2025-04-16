@@ -1,0 +1,15 @@
+#lyrics {
+    height:80vh;
+    width:450px;
+    overflow:auto;
+    margin:30px;
+    margin-top:5px;
+    text-align: center;
+    font-size: 23px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%);
+}
+
+#lyrics-title, #lyrics-author {
+    font-size: 20px;
+}
+

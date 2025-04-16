@@ -3,17 +3,114 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>JS/HTML Template</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <style>
-	  
-  </style>
-</head>
+    <meta name="viewport" content="width=device-width">
+    <title>JS/HTML Template</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="static/styles/lyrics.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="static/styles/player.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/songlist.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- https://as1.ftcdn.net/jpg/09/53/73/66/1000_F_953736654_SSuVaXJkgUlS7Tp9ElYJ1HBl0qJCelmZ.webp-->
+    </head>
 
 <body>
-  <canvas id='myCanvas'></canvas>
-  <script src="script.js"></script>
+    <div id="flex-container">
+        <div id="player-container">
+            <div id="player">
+                <div id="video-placeholder" style="display:none;"></div>
+                <div id="is-playing">Paused</div>
+                <img id='top-img' src="static/images/girl.jpg" alt="Hello">
+                <div id="info">
+                    <div id="title">Song Title</div>
+                    <div id="author">Author</div>
+                </div>
+                <div id="time">
+                    <span id="curr-time">0:00</span>
+                    <input id='time-bar' type="range" min="0" max="100">
+                    <span id="total-time">4:30</span>
+                </div>
+                
+                <div id="btn-container">
+                    <button id='restart-btn' class="player-btn small-btn">⟳</button>
+                    <button id='previous-btn' class="player-btn medium-btn">▎◀</button>
+                    <button id='play-btn' class="player-btn big-btn paused"> ▶</button>
+                    <button id='next-btn' class="player-btn medium-btn">▶▎</button>
+                    <button id='shuffle-btn' class="player-btn small-btn">?</button>
+                </div>
+
+                <div id="sound">
+                    <input id="vol-bar" type="range" min="0" max="100" value="50">
+                    <span><img id='mute-btn' src="static/images/sound-loud.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div id="sb-container" class="close">
+            
+            <div id='songs-sb' class="sb close">
+                <h2>Songs</h2>
+                <span>
+                <select>
+                    <option value="any">Any</option>
+                    <option value="title">Title</option>
+                    <option value="name">Name</option>
+                </select>
+                <input type="text" class='search-bar' placeholder="Search...">
+                <button class="all">Add All</button>
+            </span>
+                <ul id="songlist">
+                    {% for song in songs %}
+                        <li id={{ song.video_id }}><button class='add-song-btn'>+</button> <span class='title'>{{ song.title.title() }}</span> <span class='author'>{{ song.author.title() }}</span></li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+            <div id='lyrics-sb' class="sb close">
+                <h2>Lyrics</h2>
+                <h3><span id='lyrics-title'>Title</span> - <span id='lyrics-author'>Author</span></h3>
+                
+                <p id="lyrics"> </p>
+                
+            </div>
+            <div id="playlist-sb" class="sb close">
+                <h2>Playlist</h2>
+                <div id="playlist-length"></div>
+                <span>
+                    <select>
+                        <option value="any">Any</option>
+                        <option value="title">Title</option>
+                        <option value="name">Name</option>
+                    </select>
+                    <input type="text" class='search-bar' placeholder="Search...">
+                    <button class="all">Delete All</button>
+                </span>
+                <button id="update-btn">Update PL</button>
+                <ul id="playlist">
+                    
+                </ul>
+            </div>
+            <div id="toggle-btn-container">
+                <button id="song-toggle-btn" class="toggle-btn">Songs</button> 
+                <button id="lyric-toggle-btn" class="toggle-btn">Lyrics</button>
+                <button id="playlist-toggle-btn" class="toggle-btn">Playlist</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/sql-wasm.js"></script>
+
+    <script src="static/scripts/addSongs.js"></script>
+    <script src="static/scripts/getSongData.js"></script>
+    <script src="static/scripts/playMusic2.js"></script>
+    <script src="static/scripts/sb.js"></script>
+    <script src="static/scripts/sortSongs.js"></script>
+    
+    
 </body>
 
 </html>

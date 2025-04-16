@@ -1,0 +1,188 @@
+#player-container {
+    flex: 5; 
+    background: var(--gradient);
+    transition: flex-basis 2s ease; 
+}
+
+#player {
+    background-color: var(--mainColor);
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:400px;
+    height:530px;
+    border-radius:20px;
+    box-shadow: 20px 20px 30px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    flex-direction: column;
+}
+
+#info {
+    position:absolute;
+    top: 50%;
+    color: white;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+#top-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 60px;
+    border: 5px solid var(--accent);
+}
+
+
+#sound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+svg {
+    scale: 0.7;
+}
+
+#mute-btn {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+#is-playing {
+    color: var(--accent2);
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+}
+
+#btn-container {
+    margin: 10px 0 -10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-btn {
+    border-radius: 50%;
+    margin: 5px;
+    border: 5px solid var(--medium);
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--accent2);
+    cursor: pointer;
+    transition-duration: 0.8s;
+}
+
+.player-btn:hover {
+    scale: 1.1;
+}
+
+.player-btn:active {
+    transition-duration: 0.2s;
+    scale: 0.95;
+}
+
+.big-btn {
+    border: none;
+    width:90px;
+    height:90px;
+    font-size:50px;
+    color: var(--accent2);
+    background: var(--gradient)
+
+}
+
+.medium-btn {
+    width:70px;
+    height:70px;
+    font-size:17px;
+}
+
+.small-btn {
+    width:50px;
+    height:50px;
+    font-size:19px;
+}
+
+#time {
+    margin-top: 20px;
+    color: white;
+    
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Add spacing between elements */
+}
+
+#curr-time, #total-time {
+    margin: 10px;
+    width: 50px; /* Set a fixed width for consistency */
+    text-align: center; /* Keep text visually aligned */
+}
+
+#time-bar {
+    width: 250px;
+}
+
+#info {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    flex-direction: column;
+    font-family:arial;
+    margin:12px;
+}
+
+#time-bar {
+    margin-top: 320px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    height: 10px;
+    
+}
+
+/* For Firefox */
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: none;
+    background-color: var(--accent2);
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    outline: 3px solid var(--accent);
+    outline-offset: 0.125rem;
+}
+
+ /*For WebKit browsers (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    background-color: var(--accent2);
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+}
+/*
+input[type="range"]::-webkit-slider-thumb:hover {
+    outline: 3px solid var(--accent);
+    outline-offset: 0.125rem;
+}*/
+
