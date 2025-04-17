@@ -108,15 +108,17 @@ function onPlayerStateChange() {
 }
 
 function updateSoundImg() {
-    if (player.getVolume() > 50) {
-        muteBtn.src = 'static/images/sound-loud.svg'
-    }
-    else if (player.getVolume() > 0) {
-        muteBtn.src = 'static/images/sound-quiet.svg'
-    }
-    else {
+    console.log(player.isMuted())
+    if (player.getVolume() <= 0) {
         muteBtn.src = 'static/images/sound-mute.svg'
     }
+    else if (player.getVolume() < 50) {
+        muteBtn.src = 'static/images/sound-quiet.svg'   
+    }
+    else {
+        muteBtn.src = 'static/images/sound-loud.svg'
+    }
+    
 }
 
 // Play / Pause
@@ -152,6 +154,7 @@ restartBtn.addEventListener('click', () => {
 
 // Control the sound
 muteBtn.addEventListener('click', () => {
+    
     if(player.isMuted()) {
         player.unMute();
     }
