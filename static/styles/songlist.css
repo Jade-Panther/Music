@@ -67,7 +67,7 @@ li button:hover {
 
 li .author {
     float: right;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
 }
 li .author:hover {
     cursor:pointer;

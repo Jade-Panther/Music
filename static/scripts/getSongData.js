@@ -5,7 +5,6 @@ function capitalize(str) {
 }
 
 
-let result;
 initSqlJs({
    locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/${filename}`
 }).then(function (SQL) {

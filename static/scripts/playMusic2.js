@@ -13,8 +13,6 @@ let prevSongInd = -1;
 var player,
     time_update_interval = 0;
 
-console.log('In playMusic.js')
-
 window.onYouTubeIframeAPIReady = function () {
     console.log('loading')
     player = new YT.Player('video-placeholder', {
@@ -77,37 +75,43 @@ function onPlayerStateChange() {
     if (player.getPlayerState() == YT.PlayerState.PLAYING && player.getPlaylistIndex() != prevSongInd && player.getCurrentTime() < 10) {
         let currSong = playList.find(song => song.id == player.getVideoData().video_id)
         console.log(currSong)
-        fetch('/get-lyrics', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title: currSong.title, author: currSong.author })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            document.querySelector('#lyrics-title').textContent = currSong.title;
-            document.querySelector('#lyrics-author').textContent = currSong.author;
+        initSqlJs({
+            locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/${filename}`
+        }).then(function (SQL) {
+             // Fetch your songs.db file as an ArrayBuffer.
+         fetch("songs.db")
+             .then(response => {
+                 if (!response.ok) {
+                     throw new Error("Network response was not ok");
+                 }
+                 return response.arrayBuffer();
+             })
+             .then(buffer => {
+             // Convert the buffer to a Uint8Array
+             const uInt8Array = new Uint8Array(buffer);
+             // Create a database instance from the Uint8Array
+             const db = new SQL.Database(uInt8Array);
+                    
+            const query = `SELECT * FROM songs WHERE video_id = '${currSong.id}';`;
+            let lyrics = db.exec(query)[0].values;
+            console.log(lyrics)
+            document.querySelector('#lyrics').innerHTML = lyrics[0][3];
             document.querySelector('#title').textContent = currSong.title;
             document.querySelector('#author').textContent = currSong.author;
-            document.querySelector('#lyrics').innerHTML = data.lyrics;
-            // Update the lyrics div with the returned lyrics
-            //document.getElementById('lyrics').innerText = data.lyrics;
-            // Update the title and author
-            //document.querySelector('h1').innerText = `${title} by ${author}`;
-        })
+                              
+            })
         .catch(error => {
-            console.error('Error fetching lyrics:', error);
+            console.error("Error loading the database:", error);
         });
+    });
     }
 }
 
 function updateSoundImg() {
-    if (volumeBar.value > 50) {
+    if (player.getVolume() > 50) {
         muteBtn.src = 'static/images/sound-loud.svg'
     }
-    else if (volumeBar.value > 0) {
+    else if (player.getVolume() > 0) {
         muteBtn.src = 'static/images/sound-quiet.svg'
     }
     else {

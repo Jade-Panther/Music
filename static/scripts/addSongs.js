@@ -33,7 +33,7 @@ function deleteSong(song) {
 
 // Add songs
 songListEl.addEventListener('click', (event) => {
-    if(event.target.tagName === 'BUTTON' || event.target.closest('button')) {
+    if(event.target.tagName === 'BUTTON') {
         // Get the clicked li element
         let clickedLi = event.target.tagName === 'LI' ? event.target : event.target.closest('li');
         
@@ -44,7 +44,7 @@ songListEl.addEventListener('click', (event) => {
             addSong(s)
         }
     }
-    else if(event.target.classList.contains('author')) {
+    else if (event.target.classList.contains('author')) {
         let searchBar = songsSb.querySelector('.search-bar')
         searchBar.value = event.target.textContent;
         const inputEvent = new Event('input');
@@ -95,5 +95,14 @@ playListEl.addEventListener('click', (event) => {
         searchBar.value = event.target.textContent;
         const inputEvent = new Event('input');
         searchBar.dispatchEvent(inputEvent);
+    }
+    else if (event.target.tagName === 'LI' ) {
+        let clickedLi = event.target;
+        let song = {title: clickedLi.querySelector('.title').textContent, author: clickedLi.querySelector('.author').textContent};
+        let index = playList.findIndex(s => 
+            song.title === s.title && song.author === s.author
+        );
+        
+        player.playVideoAt(index)
     }
 });
