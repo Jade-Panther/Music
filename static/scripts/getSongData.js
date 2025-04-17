@@ -1,5 +1,11 @@
-// Initialize sql.js with the location of the wasm file.
-    // Adjust the locateFile function if your wasm is hosted elsewhere.
+function capitalize(str) {
+    return str.split(' ') // Split the string into words
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
+              .join(' '); // Join words back into a string
+}
+
+
+let result;
 initSqlJs({
    locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/${filename}`
 }).then(function (SQL) {
@@ -17,14 +23,14 @@ fetch("songs.db")
     // Create a database instance from the Uint8Array
     const db = new SQL.Database(uInt8Array);
            
-     const query = `SELECT * FROM songs;`;
-    const result = db.exec(query);
-                
-    console.log("Columns:", result[0].columns);
-    console.log("Rows:");
-    console.log(result)
-                
-              
+    const query = `SELECT * FROM songs;`;
+    result = db.exec(query);
+
+    let songList = document.querySelector('#songlist')
+    for (let song of result[0].values) {
+        songList.innerHTML += `<li id=${song[0]}><button class="add-song-btn">+</button> <span class="title">${capitalize(song[1])}</span> <span class="author">${capitalize(song[2])}</span></li>`
+    }
+                     
     })
     .catch(error => {
         console.error("Error loading the database:", error);

@@ -61,10 +61,8 @@
                 <button class="all">Add All</button>
             </span>
                 <ul id="songlist">
-                    {% for song in songs %}
-                        <li id={{ song.video_id }}><button class='add-song-btn'>+</button> <span class='title'>{{ song.title.title() }}</span> <span class='author'>{{ song.author.title() }}</span></li>
-                    {% endfor %}
                     
+            
                 </ul>
             </div>
             <div id='lyrics-sb' class="sb close">
@@ -98,15 +96,17 @@
             </div>
         </div>
     </div>
-    
+
+    <script src="static/scripts/playMusic2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/sql-wasm.js"></script>
-
+    
     <script src="static/scripts/addSongs.js"></script>
     <script src="static/scripts/getSongData.js"></script>
-    <script src="static/scripts/playMusic2.js"></script>
+    
     <script src="static/scripts/sb.js"></script>
     <script src="static/scripts/sortSongs.js"></script>
     

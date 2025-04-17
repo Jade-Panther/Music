@@ -13,9 +13,9 @@ let prevSongInd = -1;
 var player,
     time_update_interval = 0;
 
+console.log('In playMusic.js')
 
-
-function onYouTubeIframeAPIReady() {
+window.onYouTubeIframeAPIReady = function () {
     console.log('loading')
     player = new YT.Player('video-placeholder', {
         width: 600,
