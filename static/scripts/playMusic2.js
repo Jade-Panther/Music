@@ -98,6 +98,8 @@ function onPlayerStateChange() {
             document.querySelector('#lyrics').innerHTML = lyrics[0][3];
             document.querySelector('#title').textContent = currSong.title;
             document.querySelector('#author').textContent = currSong.author;
+            document.querySelector('#lyrics-author').textContent = currSong.author;
+            document.querySelector('#lyrics-title').textContent = currSong.title;
                               
             })
         .catch(error => {
