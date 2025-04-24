@@ -1,6 +1,7 @@
 import requests
 import cs50
 import re
+import random
 from bs4 import BeautifulSoup
 
 db = cs50.SQL('sqlite:///songs.db')
@@ -16,7 +17,17 @@ def getLyrics(title, author):
     # Else, get lyrics from the website
     url = f'https://www.azlyrics.com/lyrics/{author}/{title}.html'
     try:
-        r = requests.get(url)
+        user_agents = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36',
+            # Add more user-agents here
+        ]
+
+        headers = {
+            'User-Agent': random.choice(user_agents),
+        }
+        r = requests.get(url, headers=headers)
     except:
         print('Page not found')
     
@@ -25,6 +36,7 @@ def getLyrics(title, author):
     # Find the lyrics
     try:
         div = soup.find('div', attrs={'class':'ringtone'})
+        print(soup)
         if soup.find('span', attrs={'class':'feat'}):
             lyrics = list(div.next_siblings)[9].text
         else:
