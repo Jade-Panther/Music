@@ -17,17 +17,7 @@ def getLyrics(title, author):
     # Else, get lyrics from the website
     url = f'https://www.azlyrics.com/lyrics/{author}/{title}.html'
     try:
-        user_agents = [
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-            'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0',
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36',
-            # Add more user-agents here
-        ]
-
-        headers = {
-            'User-Agent': random.choice(user_agents),
-        }
-        r = requests.get(url, headers=headers)
+        r = requests.get(url)
     except:
         print('Page not found')
     
