@@ -26,7 +26,6 @@ def getLyrics(title, author):
     # Find the lyrics
     try:
         div = soup.find('div', attrs={'class':'ringtone'})
-        print(soup)
         if soup.find('span', attrs={'class':'feat'}):
             lyrics = list(div.next_siblings)[9].text
         else:
