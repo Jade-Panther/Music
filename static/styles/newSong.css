@@ -1,0 +1,14 @@
+#video-data {
+    margin: 20px;
+}
+
+#video-data label {
+    font-size: 20px;
+    margin: 10px;
+
+}
+
+#video-data input {
+    float: right;
+    padding: 2px;
+}

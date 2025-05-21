@@ -1,7 +1,7 @@
 function capitalize(str) {
-    return str.split(' ') // Split the string into words
-              .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
-              .join(' '); // Join words back into a string
+    return str.split(' ')
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
+              .join(' '); 
 }
 
 
@@ -26,9 +26,12 @@ fetch("songs.db")
     result = db.exec(query);
 
     let songList = document.querySelector('#songlist')
+    result[0].values.sort((a, b) => a[1].localeCompare(b[1]))
     for (let song of result[0].values) {
         songList.innerHTML += `<li id=${song[0]}><button class="add-song-btn">+</button> <span class="title">${capitalize(song[1])}</span> <span class="author">${capitalize(song[2])}</span></li>`
     }
+
+
                      
     })
     .catch(error => {

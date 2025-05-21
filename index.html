@@ -12,6 +12,7 @@
     <link href="static/styles/main.css" rel="stylesheet" type="text/css" />
     <link href="static/styles/player.css" rel="stylesheet" type="text/css"/>
     <link href="static/styles/songlist.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/newSong.css" rel="stylesheet" type="text/css"/>
 
 
 <!-- https://as1.ftcdn.net/jpg/09/53/73/66/1000_F_953736654_SSuVaXJkgUlS7Tp9ElYJ1HBl0qJCelmZ.webp-->
@@ -90,10 +91,24 @@
                     
                 </ul>
             </div>
+            <div id="new-sb" class="sb close">
+                <h2>Add New Song</h2>
+                <form id="video-data">
+                    <label for="password">Enter Manager Password:</label>
+                    <input type="password" id="password"><br>
+                    <label for="video-id">Enter Youtube video ID:</label>
+                    <input type="text" id="video-id"><br>
+                    <label for="video-title">Enter song title:</label>
+                    <input type="text" id="video-title"><br>
+                    <label for="video-author">Enter song author:</label>
+                    <input type="text" id="video-author">
+                </form> 
+            </div>
             <div id="toggle-btn-container">
                 <button id="song-toggle-btn" class="toggle-btn">Songs</button> 
                 <button id="lyric-toggle-btn" class="toggle-btn">Lyrics</button>
                 <button id="playlist-toggle-btn" class="toggle-btn">Playlist</button>
+                <button id="addSong-toggle-btn" class="toggle-btn">New</button>
             </div>
         </div>
     </div>
