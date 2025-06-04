@@ -1,7 +1,6 @@
 import requests
 import cs50
 import re
-import random
 from bs4 import BeautifulSoup
 
 db = cs50.SQL('sqlite:///songs.db')

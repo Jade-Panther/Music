@@ -94,8 +94,8 @@ function onPlayerStateChange() {
                     
             const query = `SELECT * FROM songs WHERE video_id = '${currSong.id}';`;
             let lyrics = db.exec(query)[0].values;
-            console.log(lyrics)
-            document.querySelector('#lyrics').innerHTML = lyrics[0][3];
+            console.log(lyrics[0][3].replace('\n', '<br>'))
+            document.querySelector('#lyrics').innerHTML = lyrics[0][3].replace('\n', '<br>');
             document.querySelector('#title').textContent = currSong.title;
             document.querySelector('#author').textContent = currSong.author;
             document.querySelector('#lyrics-author').textContent = currSong.author;
