@@ -24,8 +24,15 @@ db = cs50.SQL('sqlite:///songs.db')
             except Exception as e:
                 print(f"Error: {e}")
                 writer.writerow([song['video_id'], title, author, song['lyrics']])
-            
-
-        
-        
 '''
+
+with open('new.csv') as file:
+    for line in file:
+        line = line.split(',')
+        if(len(line) == 3):
+            print(line)
+            title = line[1]
+            author = line[2].replace('\n', '')
+            lyrics = requests.get(f'https://api.lyrics.ovh/v1/{author}/{title}').json()['lyrics']
+            lyrics = lyrics.replace('\n\n', '\n').replace('\n', '<br>')
+            db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', line[0], title, author, lyrics)
