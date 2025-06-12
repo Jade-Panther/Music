@@ -30,9 +30,11 @@ with open('new.csv') as file:
     for line in file:
         line = line.split(',')
         if(len(line) == 3):
-            print(line)
             title = line[1]
             author = line[2].replace('\n', '')
-            lyrics = requests.get(f'https://api.lyrics.ovh/v1/{author}/{title}').json()['lyrics']
-            lyrics = lyrics.replace('\n\n', '\n').replace('\n', '<br>')
-            db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', line[0], title, author, lyrics)
+            try:
+                lyrics = requests.get(f'https://api.lyrics.ovh/v1/{author}/{title}').json()['lyrics']
+                lyrics = lyrics.replace('\n\n', '\n').replace('\n', '<br>')
+                db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', line[0], title, author, lyrics)
+            except Exception as e:
+                db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', line[0], title, author, 'Error getting lyrics')
