@@ -2,8 +2,12 @@ import requests
 import cs50
 import re
 from bs4 import BeautifulSoup
+import random
+import time
 
 db = cs50.SQL('sqlite:///songs.db')
+
+
 
 def getLyrics(title, author):
     # If already in database, fetch the lyrics
@@ -48,16 +52,18 @@ def getSongs():
 def addSong(videoId, title, author):
     lyrics = getLyrics(title, author)
     try:
-        db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', videoId, title, author, lyrics)
+        print(lyrics)
+        #db.execute('INSERT INTO songs (video_id, title, author, lyrics) VALUES (?, ?, ?, ?);', videoId, title, author, lyrics)
     except ValueError:
         pass #print('Song already in db, continuing')
         
 def addSongsFromFile():
-    with open('songList.csv') as file:
+    with open('new.csv') as file:
         for line in file:
             line = line.split(',')
             if(len(line) == 3):
-                addSong(line[0], line[1], line[2].replace('\n', ''))
+                addSong(line[2], line[0], line[1].replace('\n', ''))
+                time.sleep(random.uniform(1, 5))
             
 addSongsFromFile()
         
