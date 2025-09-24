@@ -29,10 +29,7 @@ fetch("songs.db")
     result[0].values.sort((a, b) => a[1].localeCompare(b[1]))
     for (let song of result[0].values) {
         songList.innerHTML += `<li id=${song[0]}><button class="add-song-btn">+</button> <span class="title">${capitalize(song[1])}</span> <span class="author">${capitalize(song[2])}</span></li>`
-    }
-
-
-                     
+    }             
     })
     .catch(error => {
         console.error("Error loading the database:", error);

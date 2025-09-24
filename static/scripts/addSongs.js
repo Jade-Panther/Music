@@ -9,9 +9,10 @@ function addSong(song) {
     )
 
     if(!exists) {
-        playList.push(song)
         // Add the playlist
+        playList.push(song)
         playListEl.innerHTML += `<li id=${song.id}><button class='add-song-btn'>X</button> <span class='title'>${song.title}</span> <span class='author'>${song.author}</span></li>`
+        
         // Update length div 
         document.querySelector('#playlist-length').textContent = 'Length: ' + playList.length;
     }
@@ -27,8 +28,8 @@ function deleteSong(song) {
         playList.splice(index, 1);
     }
 
+    // Update length
     document.querySelector('#playlist-length').textContent = 'Length: ' + playList.length;
-
 }
 
 // Add songs
@@ -45,8 +46,11 @@ songListEl.addEventListener('click', (event) => {
         }
     }
     else if (event.target.classList.contains('author')) {
+        // When clicked on the author name, search for other songs by them
         let searchBar = songsSb.querySelector('.search-bar')
         searchBar.value = event.target.textContent;
+
+        // Trigger the input event to reload the song list
         const inputEvent = new Event('input');
         searchBar.dispatchEvent(inputEvent);
     }
@@ -97,6 +101,7 @@ playListEl.addEventListener('click', (event) => {
         searchBar.dispatchEvent(inputEvent);
     }
     else if (event.target.tagName === 'LI' ) {
+        // Play the video when clicked
         let clickedLi = event.target;
         let song = {title: clickedLi.querySelector('.title').textContent, author: clickedLi.querySelector('.author').textContent};
         let index = playList.findIndex(s => 
@@ -104,5 +109,6 @@ playListEl.addEventListener('click', (event) => {
         );
         
         player.playVideoAt(index)
+        updateSongInfo();
     }
 });
