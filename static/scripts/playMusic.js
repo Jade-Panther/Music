@@ -150,6 +150,22 @@ function updateSoundImg() {
     
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+function updatePlaylist() {
+    let ids = playList.map(song => song.id)
+    player.cuePlaylist(ids, 0);
+    player.playVideoAt(0)
+    playState = 'playing'
+}
+
 // Play / Pause
 playBtn.addEventListener('click', () => {
     // Toggle play/pause logic
@@ -161,6 +177,11 @@ playBtn.addEventListener('click', () => {
     }
     updatePlayButton();
 });
+
+// Shuffle button
+shuffleBtn.addEventListener('click', () => {
+    shuffleArray(playList)
+})
 
 // Control the time
 timeBar.addEventListener('input', () => {
@@ -191,14 +212,10 @@ volumeBar.addEventListener('input', () => {
     updateSoundImg()
 })
 
+
 // Update the playlist
 updateBtn.addEventListener('click', () => {
-    let ids = playList.map(song => song.id)
-    player.cuePlaylist(ids, 0);
-    player.playVideoAt(0)
-    playState = 'playing'
-    
-    
+    updatePlaylist();
 })
 
 // Previous and next song
